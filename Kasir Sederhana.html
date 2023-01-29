@@ -1,0 +1,134 @@
+
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+ <title></title>
+ <style>
+  body{
+            background-color: #2BCC6F;
+            width: auto;
+            height: 500%;
+         
+        }
+        h2{
+            text-align: center;
+            color: white;
+        }
+  
+
+  table{
+   background: white;
+   margin:auto;
+   border-radius: 30px;
+   border: none;
+  }
+  .tombol input{
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    width: 50%;
+  }
+  .tombol input:hover{
+     background-color: skyblue;
+     transform: scale(1.1);
+  }
+  
+ </style>
+</head>
+<body>
+ <div>
+  
+  <table  cellspacing = "8" cellpadding = "10">
+   <h2>Cash Register Project</h2>
+   <tr>    
+    <th>Nama</th>
+    <th><input type="text"  id="nama" onchange="total()" ></th>
+   </tr>
+   
+   <tr>    
+    <th>Harga</th>
+    <th><input type="number"  id="harga" onchange="total()"></th>
+   </tr>
+
+   <tr>    
+    <th>Jumlah Beli</th>    
+    <th><input type="number" id="jumlah"  value="0" onchange="total()"></th>
+   </tr>
+   
+   <tr>    
+    <th>kategori</th>
+    <th><select id="status" onchange="total()">
+   <option>Baju Olahraga</option>
+   <option>Baju Tidur</option>
+   <option>Kaos Oblong</option>
+   <option>Dasi</option>
+            <option>Jaket</option>
+            <option>Sweter</option>
+            <option>Kemeja</option>
+    </select></th>
+   </tr>
+   
+   <tr>    
+    <th>jumlah total</th>
+    <th><input type="text" style="background: white" id="total" disabled></th>
+   </tr>
+
+   <tr>    
+    <th>Pembayaran</th>    
+    <th><input type="number" id="bayar" onchange="total()"></th>
+   </tr>
+   
+   <tr>    
+    <th>Kembalian</th>
+    <th><input type="text" style="background: white;" id="total1" disabled></th>
+   </tr>
+         
+            <tr>
+                <td width ="1"></td>
+                <th class="tombol"><input type="button" onclick="window.print()" value="Cetak"></th>
+                <td width = "100"></td>
+            </tr>
+   
+   <tr>  
+    <table style="margin-top: 20px; "width="456" height="300px" cellspacing = "8" cellpadding = "10">
+    <th><label align="landscape"  id="cetak" ></label></th>
+    </table>
+   </tr>         
+   
+  </table>
+       
+  
+  <script type="text/javascript">
+  
+  function total() {
+   var nama = document.getElementById('nama').value;
+   var harga =  parseInt(document.getElementById('harga').value);
+   var jumlah_beli =  parseInt(document.getElementById('jumlah').value);
+   var pembayaran =  parseInt(document.getElementById('bayar').value);
+   var jenis = document.getElementById("status").value;
+   var jumlah_harga = harga * jumlah_beli;
+    document.getElementById('total').value = jumlah_harga;
+
+   var kembali = pembayaran - jumlah_harga;
+    document.getElementById('total1').value = kembali;
+  
+   var cetak = "Nama    : "+nama+"</td></tr></br>"+
+                      "Harga   : "+harga+"</br>"+
+                      "Jumlah_beli  : "+jumlah_beli+"</br>"+
+                      "Kategori   : "+jenis+"</br>"+
+                      "Jumlah_total  : "+jumlah_harga+"</br>"+
+                      "pembayaran  : "+pembayaran+"</br>"+
+                      "Kembalian  : "+kembali;
+    document.getElementById("cetak").innerHTML=cetak;
+  }
+  
+  </script>
+ </div>
+</body>
+</html>

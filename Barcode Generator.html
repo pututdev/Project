@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Barcode Generator</title>
+ 
+  <!-- Inline Css-->
+  <style type="text/css">
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: Courier New;
+  }
+  body{
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #2BCC6F;
+    justify-content: center;
+    height: 100vh;
+  }
+  .container{
+      border: 1px solid black;
+      text-align: center;
+      justify-content: center;
+      position: relative;
+      background-color: white;
+      width: 50%;
+      margin: ;
+      border: none;
+      border-radius: 50px;
+      padding: 10% 10% 10% 10%;
+    }
+    .container button{
+      padding: 8px;
+      width: 50%;
+      color: white;
+      font-size: 20px;
+      font-style: bold;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px; 
+      margin-bottom: 10px;
+      background-color: skyblue;
+    }
+    .container button:hover{
+        transform: scale(1.1);
+        background-color: rgb(248, 190, 81);
+        color: white;
+    }
+    .container input{
+      width: 80%;
+      margin-top: 20px;
+      border: 1px solid skyblue;
+      height: 30px;
+  }
+   .container input:active{
+       background-color: transparent;
+       
+   }
+    
+    
+  </style>
+
+  <!-- Custom JavaScript -->
+  <script type="text/javascript">
+    function generate() {
+        var input = document.getElementById("input").value;
+        var url = " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
+
+        var img = document.getElementById("gambar");
+        img.src = url + input;
+        
+      }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+  <h2>Barcode Generator by PututDev</h2>
+  <input type="text" id="input" autocomplete="off" placeholder="Text to Convert">
+  <br>
+  <button type="submit" id="submit" onclick="generate()">Buat QR</button>
+  <br>
+  <img src=""  id="gambar">
+  </div>
+  
+</body>
+</html>
