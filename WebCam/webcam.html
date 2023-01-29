@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<!-- Code By PututDev 2022-->
+
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create WebCam Using HTML & JavaScript</title>
+</head>
+
+<body>
+
+    <!-- Membuat Webcam Vidio-->
+
+    <div class="vidio">
+        <center><video autoplay="true" id="webcam">
+                Browser Not Suppoorted!!
+            </video></center>
+
+        <button onclick="mulai()" class="tombol2">Ambil Foto</button>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        // Mengambil ID dari Vidio
+        var vidio = document.querySelector("#webcam");
+        // Meminta izin user untuk menggunakan camera
+
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+        //Pengkondisian
+
+        if (navigator.getUserMedia) {
+            //fungsi ketika user menolak izin
+            navigator.getUserMedia({ video: true }, handleVidio, vidioError);
+        }
+
+        //fungsi ketika user memberikan izin
+        function handleVidio(stream) {
+            vidio.srcObject = stream;
+        }
+
+        //Menampilkan alert 
+
+        function vidioError(e) {
+            alert("Izinkan saya mengakses camera dan vidio ?");
+        }
+
+        //Fungsi Mengambil Gambar ( Foto )
+
+        function mulai() {
+
+            //Membuat Variabel Gambar (img)
+
+            var img = document.createElement('img');
+            var context;
+
+            //Mengambil Ukuran Vidio
+
+            var width = vidio.offsetWidth
+                , height = vidio.offsetHeight;
+
+            //Membuat Element Canvas
+
+            canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+
+            //Mengambil Gambar Dari Vidio lalu Memasukkan ke dalam "canvas"
+
+            context = canvas.getContext('2d');
+            context.drawImage(vidio, 0, 0, width, height);
+
+            //Render hasil canvas ke dalam img ( gambar)
+
+            img.src = canvas.toDataURL('img/png');
+            document.body.appendChild(img);
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
